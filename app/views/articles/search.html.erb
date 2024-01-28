@@ -1,0 +1,31 @@
+<!-- app/views/articles/search.html.erb -->
+<h1>Search Results</h1>
+
+<%= form_with(url: search_articles_path, method: :get, local: true) do |form| %>
+  <!-- Search form with text field for entering the search query -->
+  <div class="field">
+    <%= form.label :query, "Search for:" %>
+    <%= form.text_field :query %>
+  </div>
+
+  <!-- Submit button for initiating the search -->
+  <div class="actions">
+    <%= form.submit "Search" %>
+  </div>
+<% end %>
+
+<!-- Link to navigate back to the articles index -->
+<%= link_to 'Back', articles_path %>
+
+<% if @results.present? %>
+  <!-- Display search results if any are found -->
+  <% @results.each do |result| %>
+    <h2><%= link_to result.title, result %></h2>
+    <p><%= result.content %></p>
+    <p><strong>Author:</strong> <%= result.author %></p>
+    <p><strong>Date:</strong> <%= result.date %></p>
+  <% end %>
+<% else %>
+  <!-- Display a message when no search results are found -->
+  <p>No results found.</p>
+<% end %>

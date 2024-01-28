@@ -1,0 +1,17 @@
+<!-- app/views/articles/index.html.erb -->
+<h1>Articles</h1>
+
+<!-- Link to create a new article -->
+<%= link_to 'New Article', new_article_path %>
+
+<% @articles.each do |article| %>
+  <!-- Display details of each article -->
+  <h2><%= link_to article.title, article %></h2>
+  <p><%= article.content %></p>
+  <p><strong>Author:</strong> <%= article.author %></p>
+  <p><strong>Date:</strong> <%= article.date %></p>
+
+  <!-- Links to edit and delete each article -->
+  <%= link_to 'Edit', edit_article_path(article) %>
+  <%= link_to 'Delete', article, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
